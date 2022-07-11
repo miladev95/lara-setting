@@ -1,0 +1,44 @@
+{
+    "name": "miladev/laravel-settings",
+    "description": "A laravel package for managing project settings.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miladev95",
+            "email": "miladev95@gmail.com"
+        }
+    ],
+    "keywords": [ "settings", "setting", "laravel settings" ],
+    "autoload": {
+        "psr-4": {
+            "Miladev\\LaravelSettings\\": "src/",
+            "Miladev\\LaravelSettings\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Miladev\\LaravelSettings\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Miladev\\LaravelSettings\\SettingServiceProvider"
+            ],
+            "aliases": {
+                "Setting": "Miladev\\LaravelSettings\\Facades\\Setting"
+            }
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-f": "vendor/bin/phpunit --filter"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
