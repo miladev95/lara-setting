@@ -1,5 +1,5 @@
 {
-    "name": "miladev/laravel-settings",
+    "name": "miladev/lara-setting",
     "description": "A laravel package for managing project settings.",
     "type": "package",
     "license": "MIT",
