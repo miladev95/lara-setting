@@ -1,8 +1,8 @@
 # Laravel Settings
 
-[![Latest Stable Version](https://poser.pugx.org/miladev/laravel-settings/v)](//packagist.org/packages/miladev/laravel-settings)
-[![License](https://poser.pugx.org/miladev/laravel-settings/license)](//packagist.org/packages/miladev/laravel-settings)
-[![Total Downloads](https://poser.pugx.org/miladev/laravel-settings/downloads)](//packagist.org/packages/miladev/laravel-settings)
+[![Latest Stable Version](https://poser.pugx.org/miladev/lara-setting/v)](//packagist.org/packages/miladev/lara-setting)
+[![License](https://poser.pugx.org/miladev/lara-setting/license)](//packagist.org/packages/miladev/lara-setting)
+[![Total Downloads](https://poser.pugx.org/miladev/lara-setting/downloads)](//packagist.org/packages/miladev/lara-setting)
 
 A laravel package for managing project settings.
 
@@ -15,7 +15,7 @@ The package will create a table in database named `settings` with key, value and
 You can install the package via composer:
 
 ```bash
-composer require miladev/laravel-settings
+composer require miladev/lara-setting
 ```
 
 If you are using Laravel Package Auto-Discovery, you don't need you to manually add the ServiceProvider.
