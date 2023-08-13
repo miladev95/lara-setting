@@ -10,6 +10,7 @@
         }
     ],
     "keywords": [ "settings", "setting", "laravel settings" ],
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Miladev\\LaravelSettings\\": "src/",
@@ -43,5 +44,4 @@
         "test": "vendor/bin/phpunit",
         "test-f": "vendor/bin/phpunit --filter"
     },
-    "minimum-stability": "stable"
 }
