@@ -1,8 +1,8 @@
 {
     "name": "miladev/lara-setting",
     "description": "A laravel package for managing project settings.",
-    "type": "package",
     "license": "MIT",
+    "version": "1.0",
     "authors": [
         {
             "name": "Miladev95",
@@ -21,6 +21,7 @@
             "Miladev\\LaravelSettings\\Tests\\": "tests"
         }
     },
+    "homepage": "https://github.com/miladev95/lara-setting",
     "extra": {
         "laravel": {
             "providers": [
@@ -39,6 +40,5 @@
         "test": "vendor/bin/phpunit",
         "test-f": "vendor/bin/phpunit --filter"
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    "minimum-stability": "stable"
 }
