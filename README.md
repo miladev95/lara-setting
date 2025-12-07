@@ -8,7 +8,8 @@ A laravel package for managing project settings.
 
 ---
 We always need to use a settings system in our application. This package will help you to create the system easily.
-The package will create a table in database named `settings` with key, value and autoload column. You can specify which column should be loaded in boot time by setting `autoload` column to true.
+The package will create a table in database named `settings` with key, value and autoload column. You can specify which
+column should be loaded in boot time by setting `autoload` column to true.
 
 ## Installation
 
@@ -62,9 +63,18 @@ Setting::all(); // get all settings
 
 ## Roadmap
 
-- Runtime result cache to reduce duplicate query (release in v0.2.0).
-- File/Redis Cache Support.
-- Multiple driver support. Such as- file, redis etc.
+- Runtime result cache to reduce duplicate query.
+- Runtime in-memory caching to avoid duplicate queries
+- File and Redis cache drivers
+- Multiple storage drivers (database, file, Redis, custom)
+- Typed values and automatic serialization/deserialization (arrays, JSON)
+- Encryption support for sensitive values
+- Validation rules for keys and values
+- Per-setting expiration / TTL support
+- Import/export (JSON/CSV) of settings
+- Artisan commands for managing settings (list, set, forget, export)
+- Blade directives and helper functions for easy retrieval
+- Events and hooks on create/update/delete
 
 If you want to contribute, open a pull request by following Laravel contribution guide.
 
