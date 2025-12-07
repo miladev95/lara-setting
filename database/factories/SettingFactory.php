@@ -12,7 +12,9 @@ class SettingFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'key' => $this->faker->unique()->word,
+            'value' => $this->faker->sentence(3),
+            'autoload' => false,
         ];
     }
 }

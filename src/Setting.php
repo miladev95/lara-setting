@@ -89,6 +89,16 @@ class Setting
     }
 
     /**
+     * Clear only in-memory cache of settings (do not delete DB records)
+     *
+     * @return void
+     */
+    public function clearCache()
+    {
+        $this->data = [];
+    }
+
+    /**
      * Get All Settings
      *
      * @return array
@@ -107,9 +117,8 @@ class Setting
      */
     public function autoload()
     {
-        $settings = SettingModel::where('autoload', true)->mapWithKeys(function($item) {
-            return [ $item->key => $item->value ];
-        });
+        // ensure we retrieve a collection before using collection helpers
+        $settings = SettingModel::where('autoload', true)->pluck('value', 'key')->toArray();
 
         $this->data = array_merge($this->data, $settings);
     }

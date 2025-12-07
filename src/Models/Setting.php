@@ -40,6 +40,14 @@ class Setting extends Model
     protected $fillable = ['key', 'value', 'autoload'];
 
     /**
+     * Cast attributes to native types
+     * ensures autoload is always a boolean when accessed
+     */
+    protected $casts = [
+        'autoload' => 'boolean',
+    ];
+
+    /**
      * Overwrite default factory class
      *
      * @return SettingFactory
