@@ -1,0 +1,36 @@
+name: PHP Code Style Check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  php-cs-fixer:
+    name: PHP CS Fixer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v4
+        with:
+          php-version: '8.1'
+          tools: composer
+          extensions: mbstring, xml, json
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Download php-cs-fixer
+        run: |
+          curl -L https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/latest/download/php-cs-fixer.phar -o php-cs-fixer.phar
+          chmod +x php-cs-fixer.phar
+
+      - name: Run PHP CS Fixer (dry-run)
+        run: |
+          ./php-cs-fixer.phar fix --dry-run --diff --stop-on-violation --rules=@PSR12 .
+
