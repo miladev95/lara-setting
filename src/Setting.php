@@ -20,7 +20,9 @@ class Setting
      */
     public function has($key)
     {
-        return isset($this->data[$key]) || (bool) SettingModel::where('key', $key)->count();
+        // use array_key_exists so keys that are cached with null values
+        // are still considered present in the cache
+        return array_key_exists($key, $this->data) || SettingModel::where('key', $key)->exists();
     }
 
     /**
@@ -54,7 +56,8 @@ class Setting
      */
     public function get($key, $default = null)
     {
-        if(isset($this->data[$key])) {
+        // use array_key_exists to allow cached null values to be returned
+        if (array_key_exists($key, $this->data)) {
             return $this->data[$key];
         }
 
