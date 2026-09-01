@@ -2,7 +2,6 @@
 
 namespace Miladev\LaravelSettings\Facades;
 
-
 use Illuminate\Support\Facades\Facade;
 
 class Setting extends Facade
