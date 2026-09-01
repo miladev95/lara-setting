@@ -63,8 +63,6 @@ Setting::all(); // get all settings
 
 ## Roadmap
 
-- Runtime result cache to reduce duplicate query.
-- Runtime in-memory caching to avoid duplicate queries
 - File and Redis cache drivers
 - Multiple storage drivers (database, file, Redis, custom)
 - Typed values and automatic serialization/deserialization (arrays, JSON)
