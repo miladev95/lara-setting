@@ -2,7 +2,7 @@
     "name": "miladev/lara-setting",
     "description": "A laravel package for managing project settings.",
     "license": "MIT",
-    "version": "1.0",
+    "version": "2.0.0",
     "authors": [
         {
             "name": "Miladev95",
