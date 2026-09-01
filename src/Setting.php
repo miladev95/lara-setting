@@ -2,127 +2,58 @@
 
 namespace Miladev\LaravelSettings;
 
-use Miladev\LaravelSettings\Models\Setting as SettingModel;
+use Miladev\LaravelSettings\Contracts\SettingRepository;
 
 class Setting
 {
     /**
-     * Store already retrieved key-value
-     * @var array
+     * Underlying storage driver (database, file, or redis).
+     * @var SettingRepository
      */
-    private $data = [];
+    private $repository;
 
-    /**
-     * Check whether the key exists or not
-     *
-     * @param string $key
-     * @return boolean
-     */
+    public function __construct(SettingRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function has($key)
     {
-        // use array_key_exists so keys that are cached with null values
-        // are still considered present in the cache
-        return array_key_exists($key, $this->data) || SettingModel::where('key', $key)->exists();
+        return $this->repository->has($key);
     }
 
-    /**
-     * Set a specific setting with key.
-     *
-     * @param string $key
-     * @param string|null $value
-     * @param bool $autoload
-     * @return mixed
-     */
     public function set($key, $value = null, $autoload = false)
     {
-        $this->data[$key] = $value;
-
-        return SettingModel::updateOrCreate(
-            [
-                'key' => $key
-            ],
-            [
-                'value' => $value,
-                'autoload' => $autoload,
-            ]
-        );
+        return $this->repository->set($key, $value, $autoload);
     }
 
-    /**
-     * Get a single setting
-     *
-     * @param string $key
-     * @return string|null
-     */
     public function get($key, $default = null)
     {
-        // use array_key_exists to allow cached null values to be returned
-        if (array_key_exists($key, $this->data)) {
-            return $this->data[$key];
-        }
-
-        $setting = SettingModel::where('key', $key)->first();
-
-        return $setting ? $setting->value : $default;
+        return $this->repository->get($key, $default);
     }
 
-    /**
-     * Remove single setting
-     *
-     * @param string $key
-     * @return boolean
-     */
     public function forget($key)
     {
-        unset($this->data[$key]);
-
-        return SettingModel::where('key', $key)->delete();
+        return $this->repository->forget($key);
     }
 
-    /**
-     * Remove all settings
-     *
-     * @return boolean
-     */
     public function clean()
     {
-        $this->data = [];
-
-        return SettingModel::query()->delete();
+        return $this->repository->clean();
     }
 
-    /**
-     * Clear only in-memory cache of settings (do not delete DB records)
-     *
-     * @return void
-     */
     public function clearCache()
     {
-        $this->data = [];
+        $this->repository->clearCache();
     }
 
-    /**
-     * Get All Settings
-     *
-     * @return array
-     */
     public function all()
     {
-        $this->data = SettingModel::get(['key', 'value'])->mapWithKeys(function($item) {
-            return [ $item->key => $item->value ];
-        })->toArray();
-
-        return $this->data;
+        return $this->repository->all();
     }
 
-    /**
-     * Run Autoloader
-     */
     public function autoload()
     {
-        // ensure we retrieve a collection before using collection helpers
-        $settings = SettingModel::where('autoload', true)->pluck('value', 'key')->toArray();
-
-        $this->data = array_merge($this->data, $settings);
+        $this->repository->autoload();
     }
 }

@@ -61,9 +61,30 @@ Setting::clean(); // remove all rows from the settings table
 Setting::all(); // get all settings
 ```
 
+### Storage Drivers
+
+By default settings are stored in the `settings` database table. You can switch to a
+file or Redis backed store via the `driver` config key. Publish the config first:
+
+```bash
+php artisan vendor:publish --provider="Miladev\LaravelSettings\SettingServiceProvider" --tag=config
+```
+
+Then in `config/settings.php`:
+
+```php
+return [
+    'driver'    => 'file',   // database | file | redis
+    'ttl'       => 60,       // minutes; 0 = forever
+    'file_path' => null,     // used by 'file' driver; defaults to storage_path('framework/cache/lara-setting')
+];
+```
+
+For the `redis` driver, ensure a `redis` cache store is configured in `config/cache.php`
+(the default Laravel install ships with one).
+
 ## Roadmap
 
-- File and Redis cache drivers
 - Multiple storage drivers (database, file, Redis, custom)
 - Typed values and automatic serialization/deserialization (arrays, JSON)
 - Encryption support for sensitive values
